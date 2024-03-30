@@ -116,7 +116,7 @@
 .schedule-info{
     padding-left: 20px;
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;    
+    grid-template-columns: 1fr 1fr 1fr 1fr;    
 }
 .schedule-head{
     font-size: 18px;
@@ -213,7 +213,7 @@
     .schedule-info{
         padding-left: 20px;
         display: grid;
-        grid-template-columns: 1fr 1fr 1fr 1fr;
+        grid-template-columns: 1fr 1fr 1fr;
     }
     .time-treatment{
         padding-left: 10px;

@@ -398,3 +398,12 @@ table{
         left: 20%;
     }
 }
+@media (max-width: 776px){
+    .my-profile{
+        width: 100%;
+        right: 10px;
+    }
+    .patients-list{
+        top: 120px;
+    }
+}
