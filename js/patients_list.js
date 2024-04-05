@@ -85,7 +85,7 @@ function getAllPatients(myPatientList){
 
     onValue(dbRef, (snapshot) => {
         snapshot.forEach(childSnapshot => {
-            myPatientList.push(childSnapshot.val())
+            myPatientList.push(childSnapshot.val())            
         });
 
         if(i === 0){

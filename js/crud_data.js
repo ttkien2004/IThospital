@@ -38,7 +38,8 @@ function insertData(id_of_patient){
         name: fullname.innerHTML,
         sex: sex.innerHTML,
         contact: contact.innerHTML,
-        bhyt: bhyt.innerHTML
+        bhyt: bhyt.innerHTML,
+        patientId: id_of_patient,    
     })
     .then(() => {
         console.log('Add data successfully!')
@@ -68,20 +69,17 @@ function findData(id_of_patient){
     .then((snapshot) => {
         if(snapshot.exists()){
             // const treatButton = document.querySelector(`.${id_of_patient}`)
-            console.log("ID exists!!!")
-            console.log(snapshot.val().name)
-            fetch('../html/patient_profile.html')
-                .then(response => response.text())
-                .then(data => {
-                    let parser = new DOMParser();
-                    let htmlDoc = parser.parseFromString(data, 'text/html')
-                    let classNames = htmlDoc.querySelector('.sex-content')
-                    classNames.innerHTML = snapshot.val().sex
-                    location.href="../html/patient_profile.html"
-                })
-                .catch(err => {
-                    console.log(err.message)
-                })
+            const doctorFirstName = document.querySelector('.first-name')
+            const doctorLastName = document.querySelector('.last-name')            
+            const doctorDegree = document.querySelector('.degree')
+            const doctorNumber = document.querySelector('.number-contact')
+            const doctorEmail = document.querySelector('.email-contact')
+
+            doctorFirstName.innerHTML = snapshot.firstName 
+            doctorLastName.innerHTML = snapshot.lastName             
+            doctorDegree.innerHTML = snapshot.degree 
+            doctorNumber.innerHTML = '0909000009'
+            doctorEmail.innerHTML = snapshot.email 
         }else{
             console.log("ID does not exist")
         }
@@ -92,7 +90,7 @@ function findData(id_of_patient){
 }
 
 function removeData(id_of_patient){
-    remove(ref(db, "booking/" + id_of_patient))
+    remove(ref(db, "Long-term-treatment/" + id_of_patient))
     .then(() => {
         console.log('Remove successfully')
     })
@@ -113,5 +111,14 @@ removeButton.addEventListener('click', () => {
     if(removeButton.classList.contains(removeButton.classList[1])){
         removeData(removeButton.classList[1])
         removeButton.classList.remove(removeButton.classList[1])
+        location.reload()
     }
 })
+
+const myProfile = document.querySelector('.my-Profile')
+myProfile.addEventListener('click', () => {
+    findData('0')
+})
+
+
+
